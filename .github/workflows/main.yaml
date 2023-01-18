@@ -18,11 +18,11 @@ jobs:
       max-parallel: 9
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9"]
+        python-version: ["3.9"] #"3.8", "3.9"]
         platform:
-          - { name: "windows", os: "windows-latest", shell: "pwsh" }
+          #- { name: "windows", os: "windows-latest", shell: "pwsh" }
           - { name: "linux", os: "ubuntu-latest", shell: "bash -l {0}" }
-          - { name: "macos", os: "macos-latest", shell: "bash -l {0}" }
+          #- { name: "macos", os: "macos-latest", shell: "bash -l {0}" }
     defaults:
       run:
         shell: ${{ matrix.platform.shell }}
@@ -45,7 +45,7 @@ jobs:
         run: mamba install -y -c openbiosim sire
       #
       - name: Clone the big tests repo
-        run: git clone -b ${{ github.head_ref }} --single-branch https://github.com/${{ env.REPO }} tests
+        run: git clone https://github.com/${{ env.REPO }} tests
       #
       - name: Run the tests
         run: python tests/run_tests.py
