@@ -9,6 +9,9 @@ try:
 except ImportError:
     pass
 
+# make sure we are in this directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 from Sire import try_import
 
 import Sire.Config
