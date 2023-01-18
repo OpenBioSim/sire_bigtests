@@ -1,0 +1,53 @@
+name: Build
+
+# Note that push and pull-request builds are automatically
+# now skipped by GitHub if
+# [skip ci], [ci skip], [no ci], [skip actions], or [actions skip]
+# are in the commit message. We don't need to check for this ourselves.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  bigtest:
+    name: build (${{ matrix.python-version }}, ${{ matrix.platform.name }})
+    runs-on: ${{ matrix.platform.os }}
+    strategy:
+      max-parallel: 9
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9"]
+        platform:
+          - { name: "windows", os: "windows-latest", shell: "pwsh" }
+          - { name: "linux", os: "ubuntu-latest", shell: "bash -l {0}" }
+          - { name: "macos", os: "macos-latest", shell: "bash -l {0}" }
+    defaults:
+      run:
+        shell: ${{ matrix.platform.shell }}
+    env:
+      SIRE_DONT_PHONEHOME: 1
+      SIRE_SILENT_PHONEHOME: 1
+      REPO: "${{ github.event.pull_request.head.repo.full_name || github.repository }}"
+    steps:
+      #
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+          activate-environment: sire_build
+          miniforge-version: latest
+          miniforge-variant: Mambaforge
+          use-mamba: true
+      #
+      - name: Install the latest version of sire
+        run: mamba install -y -c openbiosim sire
+      #
+      - name: Clone the big tests repo
+        run: git clone -b ${{ github.head_ref }} --single-branch https://github.com/${{ env.REPO }} tests
+      #
+      - name: Run the tests
+        run: python run_tests.py
+        with:
+          directory: "tests"
