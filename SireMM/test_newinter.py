@@ -144,7 +144,7 @@ def test_compare_vacuum(verbose = True):
     cljfunc.setSpace(Cartesian())
     cljff.setCombiningRules("arithmetic")
     cljff01.setCombiningRules("arithmetic")
-    cljfunc.setCombiningRules( CLJFunction.ARITHMETIC )
+    cljfunc.setArithmeticCombiningRules(True)
     pvt_compare(verbose)
 
 def test_compare_vacuum_geo(verbose = True):
@@ -153,7 +153,7 @@ def test_compare_vacuum_geo(verbose = True):
     cljfunc.setSpace(Cartesian())
     cljff.setCombiningRules("geometric")
     cljff01.setCombiningRules("geometric")
-    cljfunc.setCombiningRules( CLJFunction.GEOMETRIC )
+    cljfunc.setGeometricCombiningRules(True)
     pvt_compare(verbose)
 
 def test_compare_box(verbose = True):
@@ -162,7 +162,7 @@ def test_compare_box(verbose = True):
     cljfunc.setSpace(space)
     cljff.setCombiningRules("arithmetic")
     cljff01.setCombiningRules("arithmetic")
-    cljfunc.setCombiningRules( CLJFunction.ARITHMETIC )
+    cljfunc.setArithmeticCombiningRules(True)
     pvt_compare(verbose)
 
 def test_compare_box_geo(verbose = True):
@@ -171,7 +171,7 @@ def test_compare_box_geo(verbose = True):
     cljfunc.setSpace(space)
     cljff.setCombiningRules("geometric")
     cljff01.setCombiningRules("geometric")
-    cljfunc.setCombiningRules( CLJFunction.GEOMETRIC )
+    cljfunc.setGeometricCombiningRules(True)
     pvt_compare(verbose)
     
 def test_compare_vacuum_group(verbose = True):
@@ -180,7 +180,7 @@ def test_compare_vacuum_group(verbose = True):
     cljfunc.setSpace(Cartesian())
     cljff.setCombiningRules("arithmetic")
     cljff01.setCombiningRules("arithmetic")
-    cljfunc.setCombiningRules( CLJFunction.ARITHMETIC )
+    cljfunc.setArithmeticCombiningRules(True)
     pvt_compare_group(verbose)
 
 def test_compare_vacuum_group_geo(verbose = True):
@@ -189,7 +189,7 @@ def test_compare_vacuum_group_geo(verbose = True):
     cljfunc.setSpace(Cartesian())
     cljff.setCombiningRules("geometric")
     cljff01.setCombiningRules("geometric")
-    cljfunc.setCombiningRules( CLJFunction.GEOMETRIC )
+    cljfunc.setGeometricCombiningRules(True)
     pvt_compare_group(verbose)
 
 def test_compare_box_group(verbose = True):
@@ -198,7 +198,7 @@ def test_compare_box_group(verbose = True):
     cljfunc.setSpace(space)
     cljff.setCombiningRules("arithmetic")
     cljff01.setCombiningRules("arithmetic")
-    cljfunc.setCombiningRules( CLJFunction.ARITHMETIC )
+    cljfunc.setArithmeticCombiningRules(True)
     pvt_compare_group(verbose)
     
 def test_compare_box_group_geo(verbose = True):
@@ -207,7 +207,7 @@ def test_compare_box_group_geo(verbose = True):
     cljfunc.setSpace(space)
     cljff.setCombiningRules("geometric")
     cljff01.setCombiningRules("geometric")
-    cljfunc.setCombiningRules( CLJFunction.GEOMETRIC )
+    cljfunc.setGeometricCombiningRules(True)
     pvt_compare_group(verbose)
 
 if __name__ == "__main__":
