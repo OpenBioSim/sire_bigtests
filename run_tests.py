@@ -1,7 +1,12 @@
 
 import os
 import sys
-import tarfile
+import glob
+import warnings
+
+os.environ["SIRE_NO_LAZY_IMPORT"] = "1"
+
+warnings.filter("ignore", "to-Python converter for")
 
 try:
     import sire
@@ -20,20 +25,12 @@ nose = try_import("nose")
 
 import Sire.Base
 
-#print("\nRunning C++ unit tests...\n")
-#try:
-#    Sire.Base.UnitTest.runAll()
-#except:
-#    pass
-#
-#print("\nNow running Python-based unit tests...\n")
-
 old_cwd = os.path.abspath(".")
 testdir = "."
 
 if len(sys.argv) > 1:
     testdirs = sys.argv[1:]
-    sys.argv = [sys.argv[0]]
+    sys.argv = [sys.argv[0], "-v"]
 
     drop = []
 
@@ -52,7 +49,11 @@ if len(sys.argv) > 1:
                     testdirs.append(dir)
 
 else:
-    testdirs = os.listdir(testdir)
+    testdirs = glob.glob(f"Sire*")
+    testdirs.sort()
+    testdirs.append("OpenMM")
+    print(f"Running in {testdirs}")
+    sys.argv = [sys.argv[0], "-v"]
 
 failures = []
 
