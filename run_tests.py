@@ -6,7 +6,7 @@ import warnings
 
 os.environ["SIRE_NO_LAZY_IMPORT"] = "1"
 
-warnings.filter("ignore", "to-Python converter for")
+warnings.filterwarnings("ignore", "to-Python converter for")
 
 try:
     import sire
