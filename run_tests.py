@@ -52,6 +52,7 @@ else:
     testdirs = glob.glob(f"Sire*")
     testdirs.sort()
     testdirs.append("OpenMM")
+    testdirs.append("Tools")
     print(f"Running in {testdirs}")
     sys.argv = [sys.argv[0], "-v"]
 
