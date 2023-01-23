@@ -18,7 +18,10 @@ import os
 
 from nose.tools import assert_equal
 
-sire_python = getBinDir() + "/sire_python"
+if sys.platform == "win32":
+    sire_python = "python"
+else:
+    sire_python = getBinDir() + "/sire_python"
 
 gromacs_path = StringProperty("../io/gromacs")
 
@@ -172,6 +175,9 @@ def _test_broken_function(verbose, function):
 
     if verbose:
         env["VERBOSE_TEST"] = "1"
+
+    print(cmd)
+    print(shlex.split(cmd))
 
     p = subprocess.Popen(shlex.split(cmd),
                          env=env,
