@@ -27,8 +27,8 @@ def test_analyse_freenrg(verbose=False):
     else:
         p = subprocess.Popen(
             (
-                "%s/sire_python %s/scripts/analyse_freenrg.py -i ../io/freenrgs.s3"
-                % (Sire.Config.binary_directory, Sire.Config.share_directory)
+                "python %s/scripts/analyse_freenrg.py -i ../io/freenrgs.s3"
+                % (Sire.Config.share_directory)
             ).split(),
             stdout=subprocess.PIPE,
         )
