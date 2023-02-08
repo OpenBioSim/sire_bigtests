@@ -7,15 +7,13 @@ except Exception:
 import os
 import sys
 import glob
-import subprocess
-import shlex
 
 import Sire.Config
 
 from nose.tools import assert_almost_equal
 
 
-def test_analyse_freenrg(verbose=False):
+def test_analyse_freenrg(verbose=True):
     analyse_freenrg = os.path.join(Sire.Config.share_directory, "scripts", "analyse_freenrg.py")
 
     if verbose:
@@ -43,10 +41,10 @@ def test_analyse_freenrg(verbose=False):
     if verbose:
         print(cmd)
 
-    output = subprocess.check_output(shlex.split(cmd))
+    output = os.popen(cmd, "r").readlines()
 
     if verbose:
-        print(output.decode())
+        print("\n".join(output))
 
     # check the output file
     if not os.path.exists("freenrg-MBAR.dat"):
