@@ -24,7 +24,7 @@ def test_analyse_freenrg(verbose=False):
     if not os.path.exists(analyse_freenrg):
         raise ValueError(f"Cannot find script {analyse_freenrg}")
 
-    iopath = os.path.join("..", "io", "simfiles", "simfile_*.dat")
+    iopath = os.path.join("..", "io", "simfiles", "simfile_*.da*")
 
     if verbose:
         print(iopath)
