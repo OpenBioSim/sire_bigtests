@@ -42,7 +42,7 @@ jobs:
           use-mamba: true
       #
       - name: Install pymbar<4
-        run: mamba install -y -c conda-force "pymbar<4"
+        run: mamba install -y -c conda-forge "pymbar<4"
       #
       - name: Install the latest version of sire
         run: mamba install -y -c "openbiosim/label/dev" sire
