@@ -42,10 +42,21 @@ jobs:
           use-mamba: true
       #
       - name: Install the latest version of sire
-        run: mamba install -y -c "openbiosim/label/dev" sire
+        run: mamba install -y -c "openbiosim/label/test" sire
       #
       - name: Clone the big tests repo
         run: git clone https://github.com/${{ env.REPO }} tests
       #
       - name: Run the tests
         run: python tests/run_tests.py
+      #
+      - name: Install pytest
+        run: mamba install pytest
+      - name: Clone BioSimSpace (we use the latest devel version)
+        run: git clone https://github.com/openbiosim/biosimspace
+      - name: Install BioSimSpace
+        run: python setup.py install
+        working-directory: biosimspace/python
+      - name: Run BioSimSpace tests
+        run: pytest test
+        working-directory: biosimspace
