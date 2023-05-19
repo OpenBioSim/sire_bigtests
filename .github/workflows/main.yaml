@@ -58,5 +58,5 @@ jobs:
         run: python setup.py install
         working-directory: biosimspace/python
       - name: Run BioSimSpace tests
-        run: pytest test
+        run: pytest tests
         working-directory: biosimspace
