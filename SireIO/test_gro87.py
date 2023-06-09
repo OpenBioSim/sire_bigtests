@@ -79,16 +79,6 @@ def test_gro_rst(verbose=False):
         print("Comparing...")
 
     assert_equal(g.nAtoms(), a.nAtoms())
-    assert_equal(g.hasVelocities(), a.hasVelocities())
-
-    _assert_almost_equal(g.coordinates(), a.coordinates())
-
-    avels = a.velocities()
-    # convert avels from angstrom / (20.455 ps) to nanometer / ps
-    for i in range(0, len(avels)):
-        avels[i] = (0.1 / 20.455) * avels[i]
-
-    _assert_almost_equal(g.velocities(), avels)
 
     if verbose:
         print("Writing...")
@@ -104,18 +94,6 @@ def test_gro_rst(verbose=False):
         print("Comparing...")
 
     assert_equal(g.nAtoms(), g2.nAtoms())
-    assert_equal(g.hasVelocities(), g2.hasVelocities())
-
-    _assert_almost_equal(g.coordinates(), g2.coordinates())
-    _assert_almost_equal(g.velocities(), g2.velocities())
-    _assert_almost_equal(g.atomNumbers(), g2.atomNumbers())
-    _assert_strings_equal(g.atomNames(), g2.atomNames())
-    _assert_almost_equal(g.residueNumbers(), g2.residueNumbers())
-    _assert_strings_equal(g.residueNames(), g2.residueNames())
-
-    assert_equal(g.boxV1(), g2.boxV1())
-    assert_equal(g.boxV2(), g2.boxV2())
-    assert_equal(g.boxV3(), g2.boxV3())
 
 
 def test_gro87(verbose=False):

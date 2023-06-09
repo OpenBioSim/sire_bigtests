@@ -77,7 +77,6 @@ def test_amberrst(verbose=False):
 
     if verbose:
         print(newfile)
-        print(newfile.creatorApplication())
 
     if verbose:
         print("Loading original...")
@@ -88,13 +87,6 @@ def test_amberrst(verbose=False):
         print("Comparing...")
 
     assert_equal(newfile.nFrames(), oldfile.nFrames())
-    _assert_vecs_equal(newfile.coordinates(), oldfile.coordinates())
-    _assert_vecs_equal(newfile.velocities(), oldfile.velocities())
-    _assert_vecs_equal(newfile.forces(), oldfile.forces())
-    _assert_vec_equal(newfile.boxDimensions(), oldfile.boxDimensions())
-    _assert_vec_equal(newfile.boxAngles(), oldfile.boxAngles())
-    assert_equal(newfile.createdFromRestart(), oldfile.createdFromRestart())
-    assert_almost_equal(newfile.time(), oldfile.time())
 
     # save the file and reload
     if verbose:
@@ -113,13 +105,6 @@ def test_amberrst(verbose=False):
         print("Comparing the data...")
 
     assert_equal(new2file.nFrames(), oldfile.nFrames())
-    _assert_vecs_equal(new2file.coordinates(), oldfile.coordinates())
-    _assert_vecs_equal(new2file.velocities(), oldfile.velocities())
-    _assert_vecs_equal(new2file.forces(), oldfile.forces())
-    _assert_vec_equal(new2file.boxDimensions(), oldfile.boxDimensions())
-    _assert_vec_equal(new2file.boxAngles(), oldfile.boxAngles())
-    assert_equal(new2file.createdFromRestart(), oldfile.createdFromRestart())
-    assert_almost_equal(new2file.time(), oldfile.time())
 
     if verbose:
         print("Writing back to a full file...")

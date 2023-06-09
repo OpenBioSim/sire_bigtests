@@ -19,9 +19,6 @@ def test_netcdf(verbose=False):
 
     print("...done")
 
-    print(r.creatorApplication())
-    print(r.time())
-
     s = MoleculeParser.read("file_netcdf_test.rst", "../io/NA16.top")
 
     r7 = AmberRst7(s)
