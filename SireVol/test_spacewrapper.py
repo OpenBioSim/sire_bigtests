@@ -58,6 +58,7 @@ def test_wrapper(verbose=False):
     mtsmc.setSlowEnergyComponent(slow_s)
 
     moves = SameMoves(mtsmc)
+    moves.setGenerator(RanGenerator(42))
 
     if verbose:
         print("Moving the molecules...")
