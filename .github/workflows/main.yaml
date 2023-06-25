@@ -65,6 +65,8 @@ jobs:
       #
       - name: Install pytest
         run: mamba install pytest
+      - name: Install kcombu_bss
+        run: mamba install -c "openbiosim/label/dev" kcombu_bss
       - name: Clone BioSimSpace (we use the latest devel version)
         run: git clone https://github.com/openbiosim/biosimspace
       - name: Install BioSimSpace
