@@ -23,6 +23,19 @@ jobs:
           - { name: "windows", os: "windows-latest", shell: "pwsh" }
           - { name: "linux", os: "ubuntu-latest", shell: "bash -l {0}" }
           - { name: "macos", os: "macos-latest", shell: "bash -l {0}" }
+        exclude:
+          # Exclude all but the latest Python from all
+          # but Linux
+          - platform:
+              { name: "macos", os: "macos-latest", shell: "bash -l {0}" }
+            python-version: "3.8"
+          - platform: { name: "windows", os: "windows-latest", shell: "pwsh" }
+            python-version: "3.8"
+          - platform:
+              { name: "macos", os: "macos-latest", shell: "bash -l {0}" }
+            python-version: "3.9"
+          - platform: { name: "windows", os: "windows-latest", shell: "pwsh" }
+            python-version: "3.9"
     defaults:
       run:
         shell: ${{ matrix.platform.shell }}
@@ -42,7 +55,7 @@ jobs:
           use-mamba: true
       #
       - name: Install the latest version of sire
-        run: mamba install -y -c "openbiosim/label/test" sire
+        run: mamba install -y -c "openbiosim/label/dev" sire
       #
       - name: Clone the big tests repo
         run: git clone https://github.com/${{ env.REPO }} tests
