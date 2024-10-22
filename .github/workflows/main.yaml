@@ -67,7 +67,7 @@ jobs:
       - name: Clone BioSimSpace (we use the latest devel version)
         run: git clone https://github.com/openbiosim/biosimspace
       - name: Install BioSimSpace
-        run: python setup.py install
+        run: pip install .
         working-directory: biosimspace/python
       - name: Run BioSimSpace tests
         run: pytest tests
