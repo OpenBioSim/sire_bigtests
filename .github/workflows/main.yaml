@@ -52,7 +52,7 @@ jobs:
           use-mamba: true
       #
       - name: Install the latest version of sire
-        run: mamba install -y -c "openbiosim/label/dev" sire
+        run: mamba install -y -c "openbiosim/label/test" sire
       #
       - name: Clone the big tests repo
         run: git clone https://github.com/${{ env.REPO }} tests
